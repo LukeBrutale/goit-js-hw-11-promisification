@@ -1,6 +1,6 @@
 /*
 Перепиши функцию toggleUserState() так, чтобы она не использовала 
-callback-функцию callback, а принимала всего два параметра 
+callback-функцию, а принимала всего два параметра 
 allUsers и userName и возвращала промис.
  */
 const users = [
@@ -13,13 +13,6 @@ const users = [
 const toggleUserState = (allUsers, userName) => {
   const updatedUsers = allUsers.map(
     user => (user.name === userName ? { ...user, active: !user.active } : user),
-    // {
-    //   if (user.name === userName) {
-    //     return { ...user, active: !user.active };
-    //   } else {
-    //     return user;
-    //   }
-    // },
   );
   return new Promise(resolve => {
     resolve(updatedUsers);
@@ -28,14 +21,6 @@ const toggleUserState = (allUsers, userName) => {
 
 const logger = updatedUsers => console.table(updatedUsers);
 
-/*
- * Сейчас работает так
- */
-// toggleUserState(users, 'Mango', logger);
-// toggleUserState(users, 'Lux', logger);
 
-/*
- * Должно работать так
- */
 toggleUserState(users, 'Mango').then(logger);
 toggleUserState(users, 'Lux').then(logger);
